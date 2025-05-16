@@ -1,0 +1,839 @@
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <locale.h>
+
+
+
+///////////////////////////////FUNÇÕES///////////////////////////////////////////////
+
+void imprimirCabecalho() {
+
+    printf("|*****************************************|\n");
+
+    printf("|*****************************************|\n");
+
+    printf("|Bem Vindo ao Projeto Remédio Em Casa 2.0.|\n");
+
+    printf("|*****************************************|\n");
+
+    printf("|*****************************************|\n");
+
+    printf("\n");
+
+}
+
+
+
+void obterInformacoesUsuario(char nome[], char cpf[], int *idade, char endereco[]) {
+
+    printf("Digite o seu nome completo: ");
+
+    scanf(" %[^\n]s", nome);
+
+
+
+    printf("Digite o seu CPF: ");
+
+    scanf("%s", cpf);
+
+
+
+    do {
+
+        printf("Digite a sua idade: ");
+
+        if (scanf("%d", idade) != 1 || *idade < 0) {
+
+            printf("[Erro] Por favor, insira uma idade válida.\n");
+
+            while (getchar() != '\n');
+
+        } else {
+
+            break;
+
+        }
+
+    } while (1);
+
+
+
+    printf("Digite o seu endereço: ");
+
+    scanf(" %[^\n]s", endereco);
+
+}
+
+
+
+int escolherDiaEntrega() {
+
+    int data;
+
+    char newline;
+
+
+
+    do {
+
+        printf("|==== Escolha o dia da entrega ====|\n");
+
+        printf("|       1. Segunda-feira.          |\n");
+
+        printf("|       2. Terça-feira.            |\n");
+
+        printf("|       3. Quarta-feira.           |\n");
+
+        printf("|       4. Quinta-feira.           |\n");
+
+        printf("|       5. Sexta-feira.            |\n");
+
+        printf("|==================================|\n\n");
+
+        printf("Digite aqui sua escolha: ");
+
+        scanf("%d", &data);
+
+
+
+        while ((newline = getchar()) != '\n' && newline != EOF);
+
+
+
+        switch (data) {
+
+        case 1:
+
+            printf("[Dia escolhido: Segunda-feira]\n");
+
+            break;
+
+        case 2:
+
+            printf("[Dia escolhido: Ter莽a-feira]\n");
+
+            break;
+
+        case 3:
+
+            printf("[Dia escolhido: Quarta-feira]\n");
+
+            break;
+
+        case 4:
+
+            printf("[Dia escolhido: Quinta-feira]\n");
+
+            break;
+
+        case 5:
+
+            printf("[Dia escolhido: Sexta-feira]\n");
+
+            break;
+
+        default:
+
+            printf("[Opção inválida, digite novamente: ]\n");
+
+        }
+
+    } while (data>5||data<1);
+
+
+
+    return data;
+
+}
+
+
+
+int escolherHorarioEntrega() {
+
+    int hora;
+
+    char newline;
+
+
+
+    do {
+
+        printf("|=== Escolha o horário para a entrega ===|\n");
+
+        printf("|                1. 10:00h.              |\n");
+
+        printf("|                2. 12:00h.              |\n");
+
+        printf("|                3. 14:00h.              |\n");
+
+        printf("|                4. 16:00h.              |\n");
+
+        printf("|========================================|\n");
+
+        printf("Digite aqui sua escolha: ");
+
+        scanf("%d", &hora);
+
+
+
+        while ((newline = getchar()) != '\n' && newline != EOF);  // Limpeza do buffer
+
+
+
+        switch (hora) {
+
+        case 1:
+
+            printf("[Horário escolhido: 10:00h]\n");
+
+            break;
+
+        case 2:
+
+            printf("[Horário escolhido: 12:00h]\n");
+
+            break;
+
+        case 3:
+
+            printf("[Horário escolhido: 14:00h]\n");
+
+            break;
+
+        case 4:
+
+            printf("[Horário escolhido: 16:00h]\n");
+
+            break;
+
+        default:
+
+            printf("[Opção inválida, digite novamente: ]\n");
+
+        }
+
+    } while (hora>4||hora<1);
+
+
+
+    return hora;
+
+}
+
+
+
+void imprimirMenu() {
+
+    printf("\n|================= Menu ==================|\n");
+
+    printf("|                1. Dipirona - 30 CP.     |\n");
+
+    printf("|                2. Paracetamol - 30 CP.  |\n");
+
+    printf("|                3. Amoxicilina - 1 FR.   |\n");
+
+    printf("|                4. Omeprazol - 30 CP.    |\n");
+
+    printf("|                5. Sair.                 |\n");
+
+    printf("|=========================================|\n");
+
+}
+
+
+
+void mostrarRemediosEscolhidos(int remediosEscolhidos[], int quantidadeRemediosEscolhidos[]) {
+
+    printf("\nAqui estão os remédios escolhidos:\n");
+
+
+
+    for (int i = 0; i < 4; ++i) {
+
+        if (remediosEscolhidos[i]) {
+
+            switch (i + 1) {
+
+            case 1:
+
+                printf("- Dipirona - %d caixinha(s) com 30 comprimidos.\n", quantidadeRemediosEscolhidos[i]);
+
+                break;
+
+            case 2:
+
+                printf("- Paracetamol - %d caixinha(s) com 30 comprimidos.\n", quantidadeRemediosEscolhidos[i]);
+
+                break;
+
+            case 3:
+
+                printf("- Amoxicilina - %d frasco(s) com 30 ml.\n", quantidadeRemediosEscolhidos[i]);
+
+                break;
+
+            case 4:
+
+                printf("- Omeprazol - %d caixinha(s) com 30 comprimidos.\n", quantidadeRemediosEscolhidos[i]);
+
+                break;
+
+            }
+
+        }
+
+    }
+
+}
+
+
+
+void realizarAgendamento(char nome[], int idade, int data, int hora, char endereco[], int remediosEscolhidos[], int quantidadeRemediosEscolhidos[]) {
+
+
+
+    printf("\nSeu nome completo: %s\n", nome);
+
+    printf("Sua idade: %i\n", idade);
+
+    switch (data) {
+
+    case 1:
+
+        printf("Dia Escolhido: Segunda-Feira\n");
+
+        break;
+
+    case 2:
+
+        printf("Dia Escolhido: Terça-feira\n");
+
+        break;
+
+    case 3:
+
+        printf("Dia Escolhido: Quarta-Feira\n");
+
+        break;
+
+    case 4:
+
+        printf("Dia Escolhido: Quinta-Feira\n");
+
+        break;
+
+    case 5:
+
+        printf("Dia Escolhido: Sexta-Feira\n");
+
+        break;
+
+    }
+
+    switch (hora) {
+
+    case 1:
+
+        printf("Horário Escolhido: 10:00h\n");
+
+        break;
+
+    case 2:
+
+        printf("Horário Escolhido: 12:00h\n");
+
+        break;
+
+    case 3:
+
+        printf("Horário Escolhido: 14:00h\n");
+
+        break;
+
+    case 4:
+
+        printf("Horário Escolhido: 16:00h\n");
+
+        break;
+
+    }
+
+    printf("Endereço de entrega: %s\n", endereco);
+
+
+
+    mostrarRemediosEscolhidos(remediosEscolhidos, quantidadeRemediosEscolhidos);
+
+
+
+    printf("\n[Parabéns, seu agendamento foi realizado.]\n");
+
+}
+
+void imprimirMenuUBS() {
+
+    printf("\n|========== Qual Especialidade? ========|\n");
+
+    printf("|              1. Pediatra.             |\n");
+
+    printf("|              2. Clínico Geral.        |\n");
+
+    printf("|              3. Ginecologista.        |\n");
+
+    printf("|              4. Ortopedista.          |\n");
+
+    printf("|=======================================|\n");
+
+
+
+}
+
+void imprimirPediatra() {
+
+    printf("\n|=============== Qual Médico? ==========|\n");
+
+    printf("|      1. Médico José-UBS Sé.           |\n");
+
+    printf("|      2. Médico Carlos-UBS Itaquera.   |\n");
+
+    printf("|      3. Médico Rafael-UBS Butantã.    |\n");
+
+    printf("|      4. Médico Luís-UBS Campo Limpo.  |\n");
+
+    printf("|      5. Médico Marcos-UBS Brasilândia.|\n");
+
+    printf("|=======================================|\n");
+
+
+
+}
+
+void imprimirClinicoGeral() {
+
+    printf("\n|============== Qual Médico? =============|\n");
+
+    printf("|        1. Médico Sérgio-UBS Sé.         |\n");
+
+    printf("|        2. Médico Gabriel-UBS Itaquera.  |\n");
+
+    printf("|        3. Médico Matheus-UBS Butantã.   |\n");
+
+    printf("|        4. Médico Luiz-UBS Campo Limpo.  |\n");
+
+    printf("|        5. Médico Mauro-UBS Brasilândia. |\n");
+
+    printf("|=========================================|\n");
+
+
+
+}
+
+void imprimirGinecologista() {
+
+    printf("\n|================= Qual Médico? ==========|\n");
+
+    printf("|        1. Médico Maldonado-UBS Sé.      |\n");
+
+    printf("|        2. Médico Paulo-UBS Itaquera.    |\n");
+
+    printf("|        3. Médico Nicolas-UBS Butantã.   |\n");
+
+    printf("|        4. Médico Victor-UBS Campo Limpo.|\n");
+
+    printf("|        5. Médico Otávio-UBS Brasilândia.|\n");
+
+    printf("|=========================================|\n");
+
+
+
+}
+
+void imprimirOrtopedista() {
+
+    printf("\n|================ Qual Médico? ===========|\n");
+
+    printf("|       1. Médico Pedro-UBS Sé.           |\n");
+
+    printf("|       2. Médico Henrique-UBS Itaquera.  |\n");
+
+    printf("|       3. Médico Mariano-UBS Butantã.    |\n");
+
+    printf("|       4. Médico Octavio-UBS Campo Limpo.|\n");
+
+    printf("|       5. Médico Eduardo-UBS Brasilândia.|\n");
+
+    printf("|=========================================|\n");
+
+
+
+}
+
+void mostrarMedicosEscolhidos(int opcao2, int opcao3) {
+
+    switch (opcao2) {
+
+    case 1: // Pediatra
+
+        switch (opcao3) {
+
+        case 1:
+
+            printf("[Médico escolhido: Médico José-UBS Sé.]\n");
+
+            break;
+
+        case 2:
+
+            printf("[Médico escolhido: Médico Carlos-UBS Itaquera.]\n");
+
+            break;
+
+        case 3:
+
+            printf("[Médico escolhido: Médico Rafael-UBS Butantã.]\n");
+
+            break;
+
+        case 4:
+
+            printf("[Médico escolhido: Médico Luís-UBS Campo Limpo.]\n");
+
+            break;
+
+        case 5:
+
+            printf("[Médico escolhido: Médico Marcos-UBS Brasilândia.]\n");
+
+            break;
+
+        default:
+
+            printf("[Opção inválida para pediatra.]\n");
+
+        }
+
+        break;
+
+
+
+    case 2: // Clínico Geral
+
+        switch (opcao3) {
+
+        case 1:
+
+            printf("[Médico escolhido: Médico Sérgio-UBS Sé.]\n");
+
+            break;
+
+        case 2:
+
+            printf("[Médico escolhido: Médico Gabriel-UBS Itaquera.]\n");
+
+            break;
+
+        case 3:
+
+            printf("[Médico escolhido: Médico Matheus-UBS Butantã.]\n");
+
+            break;
+
+        case 4:
+
+            printf("[Médico escolhido: Médico Luiz-UBS Campo Limpo.]\n");
+
+            break;
+
+        case 5:
+
+            printf("[Médico escolhido: Médico Mauro-UBS Brasilândia.]\n");
+
+            break;
+
+        default:
+
+            printf("[Opção inválida para clínico geral.]\n");
+
+        }
+
+        break;
+
+
+
+    case 3: // Ginecologista
+
+        switch (opcao3) {
+
+        case 1:
+
+            printf("[Médico escolhido: Médico Maldonado-UBS Sé.]\n");
+
+            break;
+
+        case 2:
+
+            printf("[Médico escolhido: Médico Paulo-UBS Itaquera.]\n");
+
+            break;
+
+        case 3:
+
+            printf("[Médico escolhido: Médico Nicolas-UBS Butantã.]\n");
+
+            break;
+
+        case 4:
+
+            printf("[Médico escolhido: Médico Victor-UBS Campo Limpo.]\n");
+
+            break;
+
+        case 5:
+
+            printf("[Médico escolhido: Médico Otávio-UBS Brasilândia.]\n");
+
+            break;
+
+        default:
+
+            printf("[Opção inválida para ginecologista.]\n");
+
+        }
+
+        break;
+
+
+
+    case 4: // Ortopedista
+
+        switch (opcao3) {
+
+        case 1:
+
+            printf("[Médico escolhido: Médico Pedro-UBS Sé.]\n");
+
+            break;
+
+        case 2:
+
+            printf("[Médico escolhido: Médico Henrique-UBS Itaquera.]\n");
+
+            break;
+
+        case 3:
+
+            printf("[Médico escolhido: Médico Mariano-UBS Butantã.]\n");
+
+            break;
+
+        case 4:
+
+            printf("[Médico escolhido: Médico Octavio-UBS Campo Limpo.]\n");
+
+            break;
+
+        case 5:
+
+            printf("[Médico escolhido: Médico Eduardo-UBS Brasilândia.]\n");
+
+            break;
+
+        default:
+
+            printf("[Opção inválida para ortopedista.]\n");
+
+        }
+
+        break;
+
+
+
+    default:
+
+        printf("[Especialidade inválida.]\n");
+
+    }
+
+}
+
+
+
+
+
+
+
+int main() { ///////////////////////////////INICIO DO CODIGO ///////////////////////////////////////////////
+
+    char nome[100], endereco[100], cpf[15];
+
+    int idade, opcao, data, hora, opcao2, opcao3;
+
+    int remediosEscolhidos[4] = {0};
+
+    int quantidadeRemediosEscolhidos[4] = {0};
+
+    setlocale(LC_ALL, "portuguese");
+
+
+
+    imprimirCabecalho();
+
+    obterInformacoesUsuario(nome, cpf, &idade, endereco);
+
+
+
+    data = escolherDiaEntrega();
+
+    hora = escolherHorarioEntrega();
+
+
+
+    do {
+
+        imprimirMenu();
+
+        printf("Escolha a sua opção: ");
+
+        scanf("%i", &opcao);
+
+
+
+        if (opcao >= 1 && opcao <= 4 && remediosEscolhidos[opcao - 1] == 0) {
+
+            remediosEscolhidos[opcao - 1] = 1;
+
+            printf("Remédio selecionado.\n");
+
+            int quantidade;
+
+            printf("Digite a quantidade desejada para o remédio: ");
+
+            scanf("%d", &quantidade);
+
+            quantidadeRemediosEscolhidos[opcao - 1] = quantidade;
+
+            printf("Remdio selecionado. Quantidade: %d\n", quantidade);
+
+        } else if (opcao == 5) {
+
+            printf("SAINDO DO PROGRAMA...\n");
+
+        } else if (remediosEscolhidos[opcao - 1] == 1) {
+
+            printf("Opção já selecionada. Escolha novamente.\n");
+
+        } else {
+
+            printf("Opção inválida. Tente novamente.\n");
+
+        }
+
+    } while (opcao != 5);
+
+
+
+    realizarAgendamento(nome, idade, data, hora, endereco, remediosEscolhidos, quantidadeRemediosEscolhidos);
+
+    // ...
+
+
+
+    char resposta[3];
+
+    do {
+
+        printf("Gostaria de agendar uma consulta com um médico? ");
+
+        scanf("%s", resposta);
+
+
+
+        for (int i = 0; i < 3; ++i) {
+
+            resposta[i] = tolower(resposta[i]);
+
+        }
+
+
+
+        if (strcmp(resposta, "s") == 0 || strcmp(resposta, "sim") == 0) {
+
+            imprimirMenuUBS();
+
+            printf("Escolha a sua opção: ");
+
+            scanf("%i", &opcao2);
+
+            if(opcao2==1) {
+
+                imprimirPediatra();
+
+                printf("Escolha a sua opção: ");
+
+                scanf("%i", &opcao3);
+
+            }
+
+            else if(opcao2==2) {
+
+                imprimirClinicoGeral();
+
+                printf("Escolha a sua opção: ");
+
+                scanf("%i", &opcao3);
+
+            }
+
+            else if(opcao2==3) {
+
+                imprimirGinecologista();
+
+                printf("Escolha a sua opção: ");
+
+                scanf("%i", &opcao3);
+
+            }
+
+            else if(opcao2==4) {
+
+                imprimirOrtopedista();
+
+                printf("Escolha a sua opção: ");
+
+                scanf("%i", &opcao3);
+
+            }
+
+            else {
+
+                printf("Opção inválida, digite novamente: ");
+
+            }
+
+            mostrarMedicosEscolhidos(opcao2, opcao3);
+
+            printf("[Obrigado por agendar sua consulta e sua entrega conosco, tenha um bom dia!]");
+
+        }
+
+        else if (strcmp(resposta, "n") == 0 || strcmp(resposta, "nao") == 0) {
+
+            printf("[Muito obrigado por agendar sua entrega conosco, tenha um bom dia!]");
+
+        }
+
+        else {
+
+            printf("Resposta inválida. Por favor, digite 'sim' ou 'nao'.\n");
+
+        }
+
+
+
+    } while (strcmp(resposta, "s") != 0 && strcmp(resposta, "sim") != 0 && strcmp(resposta, "n") != 0 && strcmp(resposta, "nao") != 0);
+
+    return 0;
+
+}
