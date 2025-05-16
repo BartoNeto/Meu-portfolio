@@ -1,1 +1,45 @@
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <locale.h>
+int main() {
+setlocale(LC_ALL, "portuguese");
+    srand(time(NULL));
+    int Dado = rand()% 1000+1;
+    int  P=0,IM=0;
+    char Rolagem;
+    printf("Bem-vindo ao jogo da adivinhação.\n");
+    printf("Tente adivinhar se o número é par ou ímpar.\n ");
+    printf("Lembrando que o número vai estar entre 1 e 1000.\n");
+    printf("[P para Par e I para Ímpar]\n");
+    do{
+        printf("Faça o seu chute:");
+         scanf(" %c", &Rolagem);
+        if(Rolagem!='P'&&Rolagem!='p'&&Rolagem!='I'&&Rolagem!='i'){
+        printf("Letra inválida, digite novamente.\n");
+        }
+        }while(Rolagem!='P'&&Rolagem!='p'&&Rolagem!='I'&&Rolagem!='i');
+   if(Dado%2==0){
+P=1;
+}else {
+IM=1;
+}
+     if((Rolagem=='P'||Rolagem=='p')&&P==1){
+          printf("Parabéns, você acertou.\n");
+            printf("O número é par.\n");
+            printf("O numero é:%i",Dado);
+            }else if((Rolagem=='P'||Rolagem=='p')&&IM==1){
+        printf("Você errou, o número é ímpar.\n");
+         printf("O numero é:%i",Dado);
+        }
+        if((Rolagem=='i'||Rolagem=='I')&&IM==1){
+             printf("Parabéns, você acertou.\n");
+             printf("O número é ímpar.\n");
+            printf("O numero é:%i",Dado);
+         }else if((Rolagem=='I'||Rolagem=='i')&&P==1){
+        printf("Você errou,o número é par.\n");
+       printf("O numero é:%i",Dado);
+         }
+    return 0;
+}
+    
