@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <locale.h>
+
+int main() {
+  setlocale(LC_ALL, "portuguese");
+  int N1, N2, N3, M;
+  char L;
+
+  do {
+    do {
+      printf("Digite a sua opção:\n");
+      printf("[1 Para multiplicação entre dois números]\n");
+      printf("[2 Para verificar se o número é par ou ímpar]\n");
+      scanf(" %d", &N2);
+
+      if (N2 != 1 && N2 != 2) {
+        printf("Opção inválida. Digite novamente.\n");
+        while (getchar() != '\n');
+      }
+    } while (N2 != 1 && N2 != 2);
+
+    if (N2 == 1) {
+      printf("A primeira opção foi escolhida.\n");
+      printf("Digite um número:\n");
+      scanf(" %d", &N1);
+      printf("Digite o outro número:\n");
+      scanf(" %d", &N3);
+      M = N1 * N3;
+      printf("A multiplicação dos números é: %d\n", M);
+    } else if (N2 == 2) {
+      printf("A segunda opção foi escolhida.\n");
+      printf("Digite um número :");
+      scanf("%d", &N1);
+
+      if (N1 % 2 == 0) {
+        printf("O número é par.\n");
+      } else {
+        printf("O número é ímpar.\n");
+      }
+    }
+    do{
+    printf("Você gostaria de escolher outra opção?");
+    printf("[S para Sim e N para Não]\n");
+    scanf(" %c", &L);
+    if(L!='S'&&L!='s'&&L!='N'&&L!='n'){
+    printf("Letra inválida, digite novamente\n");
+    while (getchar() != '\n');  
+}
+}
+while(L!='S'&&L!='s'&&L!='N'&&L!='n');
+  } while (L == 'S' || L == 's');
+
+  return 0;
+}
+
