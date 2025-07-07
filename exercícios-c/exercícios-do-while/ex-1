@@ -1,0 +1,15 @@
+#include<stdio.h>
+#include <locale.h>
+int main()
+{
+setlocale(LC_ALL,"portuguese");
+int N,R;
+do{
+printf("Digite um número ou -1 para sair:");
+scanf("%i",&N);
+if(N>=0){
+R+=N;
+}
+}while(N!=-1);
+printf("Aqui está a soma dos números:%i",R);
+}
