@@ -1,0 +1,21 @@
+#include<stdio.h>
+#include <locale.h>
+int main()
+{
+setlocale(LC_ALL,"portuguese");
+float x[10],y[10];
+int I;
+float mult,soma;
+for(I=0;I<10;I++){
+printf("Digite um número para x:");
+scanf("%f",&x[I]);
+}
+for(I=0;I<10;I++){
+printf("Digite um número para y:");
+scanf("%f",&y[I]);
+}
+for(I=0;I<10;I++){
+mult+=x[I]*y[I];
+}
+printf("O produto escalar é:%.2f",mult);
+}
