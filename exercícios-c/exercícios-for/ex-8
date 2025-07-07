@@ -1,0 +1,17 @@
+#include<stdio.h>
+
+int main()
+{
+   int I,N,P=0,IM=0;            
+for(I=1;I<=10;I++){
+printf("Digite um número:");
+scanf("%i",&N);
+if(N>18)
+P++;
+else
+IM++;
+}
+printf("A quantidade de pessoas que tem a idade maior que 18 é %i\n",P);
+printf("A quantidade de pessoas que não tem a idade  maior que 18 é %i",IM);
+    return 0;
+}
