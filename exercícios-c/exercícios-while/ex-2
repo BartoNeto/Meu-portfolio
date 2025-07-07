@@ -1,0 +1,17 @@
+#include<stdio.h>
+
+int main()
+{
+   float I=1,N,MA;            
+while(I<=5){
+I++;
+printf("Digite o número:");
+scanf("%f",&N);
+if(I==1)
+MA=N;
+if(N>MA)
+MA=N;
+}
+printf("O maior número é %.2f",MA);
+    return 0;
+}
