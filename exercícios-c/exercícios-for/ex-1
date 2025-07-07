@@ -1,0 +1,14 @@
+#include<stdio.h>
+
+int main()
+{
+   int ID,A,S=0;            
+for(ID=1;ID<=50;ID++){
+printf("Digite a idade:");
+scanf("%i",&A);
+S+=A;
+}
+float M=S/50.0;
+printf("A média das idades é %.2f",M);
+    return 0;
+}
