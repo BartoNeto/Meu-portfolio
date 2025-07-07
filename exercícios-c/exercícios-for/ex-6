@@ -1,0 +1,17 @@
+#include<stdio.h>
+#include <locale.h>
+int main()
+{
+setlocale(LC_ALL,"portuguese");
+   float N,MA;
+   int I;            
+for(I=1;I<=5;I++){
+printf("Digite o n�mero:");
+scanf("%f",&N);
+if(I==1)
+MA=N;
+if(N>MA)
+MA=N;
+}
+printf("O maior n�mero �: %.2f.",MA);
+}
