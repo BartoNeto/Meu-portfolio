@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include <locale.h>
+int main()
+{
+setlocale(LC_ALL,"portuguese");
+int N,I=1;
+do{
+printf("Digite a sua opção:");
+
+printf("[C Para Clientes]");
+printf("[F Para Fornecedores]");
+printf("[E Para Encomendas]");
+printf("[S Para Sair]");
+scanf(" %c",&N);
+while(I=1);
+switch(&N)
+case 'C':
+case 'c':
+printf("A opção escolhida foi: Clientes.");
+break;
+case 'F':
+case 'f':
+break;
+printf("A opção escolhida foi: Fornecedores.");
+case 'E':
+case 'e':
+printf("A opção escolhida foi: Encomendas.");
+break;
+case 'S':
+case 's':
+printf("A opção escolhida foi: Sair.");
+break;
+default:
+printf("Opção Inválida.");
+}whi
+}
