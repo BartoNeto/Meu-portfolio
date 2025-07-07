@@ -1,0 +1,17 @@
+#include<stdio.h>
+
+int main()
+{
+   float B,E,R=1;          
+
+printf("Digite a base:\n");
+scanf("%f",&B);
+printf("Digite o expoente.\n");
+scanf("%f",&E);   
+for(int I=1;I<=E;I++){
+R*=B;
+}
+printf("%.2f elevado a %.2f é %.2f.\n",B,E,R);
+
+    return 0;
+}
