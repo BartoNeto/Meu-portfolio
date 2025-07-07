@@ -1,0 +1,14 @@
+#include<stdio.h>
+#include <locale.h>
+int main()
+{
+setlocale(LC_ALL,"portuguese");
+int N,I=1,M;
+do{
+printf("Digite um número :");
+scanf("%i",&N);
+M*=N;
+I++;
+}while(I<=2);
+printf("A multiplicação dos números é:%i",M);
+}
