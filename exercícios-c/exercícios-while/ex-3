@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include<locale.h>
+int main() {
+setlocale(LC_ALL,"PORTUGUESE");
+    float N = -1;
+    while (N<0||N>10) {
+        printf("Digite uma nota entre 0 e 10: ");
+        scanf("%f", &N);
+        if (N<0||N>10) {
+            printf("Valor inválido. Digite novamente.\n");
+        }
+    }
+    printf("Nota válida: %.2f\n", N);
+}
+    
