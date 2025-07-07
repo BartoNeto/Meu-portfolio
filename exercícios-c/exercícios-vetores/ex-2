@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include <locale.h>
+int main()
+{
+setlocale(LC_ALL,"portuguese");
+int Numeros[10];
+int I=0,valor,maiores=0,menores=0,iguais=0;
+for(I=0;I<10;I++){
+printf("Digite um número:");
+scanf("%i",&Numeros[I]);
+}
+printf("Digite um valor de referência inteiro:");
+scanf("%d", &valor);
+printf("Os números maiores que o valor de referência são:\n");
+for(I=0;I<10;I++){
+if(Numeros[I]>valor){
+printf("%i\n",Numeros[I]);
+maiores++;
+}
+}
+if(maiores==0){
+printf("Nenhum número maior que o de referência foi digitado.\n");
+}
+printf("Os números menores que o valor de referência são:\n");
+for(I=0;I<10;I++){
+if(Numeros[I]<valor){
+printf("%i\n",Numeros[I]);
+menores++;
+}
+}
+if(menores==0){
+printf("Nenhum número menor que o de referência foi digitado.\n");
+}
+printf("Você digitou número igual ao valor de referência:\n");
+for(I=0;I<10;I++){
+if(Numeros[I]==valor){
+iguais++;
+}
+}
+if(iguais==1){
+printf("%i vez.\n",iguais);
+}else{
+printf("%i vezes.\n",iguais);
+}
+}
