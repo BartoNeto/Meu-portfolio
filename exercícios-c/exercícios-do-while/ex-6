@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include <locale.h>
+int main()
+{
+setlocale(LC_ALL,"portuguese");
+int N,P=0,IM=0,NP=0,NI=0;
+do{
+printf("Digite um número ou 0 para sair:");
+scanf("%i",&N);
+if(N%2==0){
+P++;
+NP+=N;
+}else{
+IM++;
+NI+=N;
+}
+if(N==0){
+P--;
+}
+}while(N!=0);
+printf("A quantidade de números pares é: %i.\n", P);
+printf("A quantidade de números ímpares é: %i.\n",IM);
+float MP=NP/P;
+float MI=NI/IM;
+float RP=P+IM;
+float RI=NP+NI;
+float MT=RI/RP;
+printf("Aqui está a média dos números pares: %.2f.\n",MP);
+printf("Aqui está a média dos números ímpares: %.2f.\n",MI);
+printf("Aqui está a média de todos os números: %.2f.\n",MT);
+}
