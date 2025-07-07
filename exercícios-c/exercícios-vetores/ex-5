@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <locale.h>
+
+int main()
+{
+    setlocale(LC_ALL, "portuguese");
+    int x[10], numeros[20];
+    int cp = 0, ci = 0, I;
+
+    for (I = 0; I < 10; I++) {
+        printf("Digite um número: ");
+        scanf("%i", &x[I]);
+        if (x[I] % 2 == 0) {
+            numeros[cp] = x[I] / 2;
+            cp++;
+        } else {
+            numeros[cp + ci] = x[I] * 3;
+            ci++;
+        }
+    }
+printf("Aqui está os números digitados:");
+for(I=0;I<10;I++){
+printf(" %i\n",x[I]);
+}
+
+    printf("Aqui estão os números pares divididos por 2 e os ímpares multiplicados por 3:\n");
+    if (cp > 0 || ci > 0) {
+        for (I = 0; I < cp + ci; I++) {
+            printf("%i\n", numeros[I]);
+        }
+    }
+    return 0;
+}
+    
