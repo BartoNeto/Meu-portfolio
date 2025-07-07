@@ -1,0 +1,27 @@
+#include<stdio.h>
+
+int main()
+{
+   float I,N,VT=0,VV=0,VP=0;            
+char FP;
+for(I=1;I<=15;I++){
+printf("Digite o valor da transação:\n");
+scanf("%f",&N);
+printf("Como quer pagar? V para à vista e P para a prazo.\n");
+scanf(" %c",&FP);   
+if(FP=='V'||FP=='v'){
+VV+=N;
+}
+else if(FP=='P'||FP=='p'){
+VP+=N;
+}else{
+printf("Forma de pagamento inválida.\n");
+}
+}
+VT=VV+VP;
+printf("O valor total das compras à vista é %.2f R$.\n",VV);
+printf("O valor total das compras a prazo é:%.2f R$.\n",VP);
+printf("O valor total das compras efetuadas é:%.2f R$.\n",VT);
+
+    return 0;
+}
