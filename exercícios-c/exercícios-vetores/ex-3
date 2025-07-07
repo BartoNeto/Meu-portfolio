@@ -1,0 +1,14 @@
+#include<stdio.h>
+#include <locale.h>
+int main()
+{
+setlocale(LC_ALL,"portuguese");
+int Numeros[5];
+int I=0,soma;
+for(I=0;I<5;I++){
+printf("Digite um número:");
+scanf("%i",&Numeros[I]);
+soma+=Numeros[I];
+}
+printf("A soma dos números é:%i",soma);
+}
