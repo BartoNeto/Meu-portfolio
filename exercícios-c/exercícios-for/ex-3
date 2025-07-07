@@ -1,0 +1,14 @@
+#include<stdio.h>
+
+int main()
+{
+   float ID,A,S=0;            
+for(ID=1;ID<=5;ID++){
+printf("Digite a nota:");
+scanf("%f",&A);
+S+=A;
+}
+float M=S/5.0;
+printf("A média das notas é %.2f",M);
+    return 0;
+}
