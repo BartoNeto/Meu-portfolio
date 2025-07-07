@@ -1,0 +1,15 @@
+#include<stdio.h>
+
+int main()
+{
+   int I,N,F;            
+printf("Digite o número para ter o fatorial:");
+scanf("%i",&N);
+I=N;
+F=1;
+while(I>=1){
+F*=I;
+I--;
+}
+printf("O fatorial do número %i!=%ix%ix%ix%ix%i=%i",N,N,N-1,N-2,N-3,N-4,F);
+}
