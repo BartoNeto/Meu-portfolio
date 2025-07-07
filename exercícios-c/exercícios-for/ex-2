@@ -1,0 +1,17 @@
+#include<stdio.h>
+
+int main()
+{
+   int I,N,P=0,IM=0;            
+for(I=1;I<=10;I++){
+printf("Digite um número:");
+scanf("%i",&N);
+if(N%2==0)
+P++;
+else
+IM++;
+}
+printf("A quantidade de numeros pares é %i\n",P);
+printf("A quantidade de numeros ímpares é %i",IM);
+    return 0;
+}
