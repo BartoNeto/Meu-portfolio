@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main()
+{
+   int n, primeiro = 1, segundo = 1, proximo;
+   
+   printf("Digite o valor de N para a série de Fibonacci: ");
+   scanf("%d", &n);
+   
+   printf("Série de Fibonacci até o %d-ésimo termo:\n", n);
+   printf("%d %d ", primeiro, segundo);
+   
+   for (int i = 3; i <= n; i++) {
+      proximo = primeiro + segundo;
+      printf("%d ", proximo);
+      primeiro = segundo;
+      segundo = proximo;
+   }
+   
+   return 0;
+}
