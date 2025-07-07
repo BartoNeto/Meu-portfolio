@@ -1,0 +1,16 @@
+#include<stdio.h>
+#include <locale.h>
+int main()
+{
+setlocale(LC_ALL,"portuguese");
+int N=0;
+do{
+printf("Digite um número :");
+scanf("%i",&N);
+if(N & 1){
+printf("O número é ímpar.");
+}else{
+printf("O número é par");
+}
+}while(N<1);
+}
