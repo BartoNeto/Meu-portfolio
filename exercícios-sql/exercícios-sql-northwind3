@@ -1,0 +1,261 @@
+-- 1) Consulta Básica: 
+-- Liste o nome de cada produto e o nome da sua respectiva categoria.
+
+select ProductsT.ProductName, CategoriesT.CategoryName
+from Products as ProductsT
+join Categories as CategoriesT on ProductsT.CategoryID = CategoriesT.CategoryID;
+
+-- 2) Pedidos e Clientes: 
+-- Mostre o OrderID de cada pedido e o nome da empresa do cliente que o realizou.
+
+select OrdersT.OrderID, CustomersT.CompanyName
+from Orders as OrdersT
+join Customers as CustomersT on OrdersT.CustomerID = CustomersT.CustomerID;
+
+-- 3) Clientes e Seus Pedidos (Incluindo os sem pedidos): 
+-- Crie uma lista com o nome de todos os clientes e os OrderIDs dos pedidos que eles fizeram.
+-- Clientes que nunca fizeram pedidos devem aparecer na lista.
+
+select CustomersT.CompanyName, OrdersT.OrderID
+from Customers as CustomersT
+left join Orders as OrdersT on CustomersT.CustomerID = OrdersT.CustomerID;
+
+-- 4) Produtos de Fornecedores Japoneses: 
+-- Liste o nome dos produtos fornecidos por empresas localizadas no Japão.
+
+select ProductsT.ProductName, SuppliersT.Country
+from Products as ProductsT
+join Suppliers as SuppliersT on ProductsT.SupplierID = SuppliersT.SupplierID
+where SuppliersT.Country = 'Japan';
+
+-- 5) Formatação de Nomes de Funcionários: 
+-- Crie uma consulta que mostre o nome completo dos funcionários 
+-- e o nome completo dos seus respectivos supervisores diretos, 
+-- ambos em uma única coluna formatada como "SOBRENOME, NOME".
+
+select upper(EmployeesT.LastName), upper(EmployeesT.FirstName)
+from Employees as EmployeesT;
+
+-- 6) Contagem de Pedidos por Funcionário:
+-- Mostre o nome de todos os funcionários e a quantidade de pedidos que cada um registrou. 
+-- Funcionários que nunca registraram um pedido devem aparecer com contagem 0.
+
+select EmployeesT.LastName, EmployeesT.FirstName, count(OrdersT.OrderID)
+from Employees as EmployeesT
+join Orders as OrdersT on EmployeesT.EmployeeID = OrdersT.EmployeeID
+group by EmployeesT.EmployeeID, EmployeesT.LastName, EmployeesT.FirstName;
+
+-- 7) Valor Total em Estoque por Fornecedor: 
+-- Calcule o valor total em estoque (UnitPrice * UnitsInStock) para os produtos de cada fornecedor. 
+-- Mostre o nome do fornecedor e o valor total, 
+-- mas apenas para fornecedores cujo valor total em estoque exceda $3.000.
+
+select SuppliersT.CompanyName, sum(ProductsT.UnitPrice * ProductsT.UnitsInStock) as 'Total'
+from Products as ProductsT
+join Suppliers as SuppliersT on ProductsT.SupplierID = SuppliersT.SupplierID
+group by ProductsT.SupplierID, SuppliersT.CompanyName
+having sum(ProductsT.UnitPrice * ProductsT.UnitsInStock) > 3000;
+
+-- 8) Fornecedores Sem Produtos: 
+-- Identifique o nome das empresas fornecedoras que não possuem nenhum produto cadastrado.
+
+select SuppliersT.SupplierID, count(ProductsT.ProductID)
+from Suppliers as SuppliersT
+join Products as ProductsT on SuppliersT.SupplierID = ProductsT.SupplierID
+group by SuppliersT.SupplierID
+having count(ProductsT.ProductID) < 1;
+
+-- 9) Relatório Detalhado de Pedido: 
+-- Para o pedido 10251, mostre o nome do cliente, 
+-- a data do pedido formatada como dd/MM/yyyy, o nome do produto, 
+-- a quantidade e o preço unitário.
+
+select 
+	OrdersT.CustomerID, 
+	format(cast(OrdersT.OrderDate as date), 'dd/MM/yyyy'), 
+	ProductsT.ProductName, OrderDetailsT.Quantity, 
+	ProductsT.UnitPrice
+from Orders as OrdersT
+join [Order Details] as OrderDetailsT on OrdersT.OrderID = OrderDetailsT.OrderID
+join Products as ProductsT on OrderDetailsT.ProductID = ProductsT.ProductID
+where OrdersT.OrderID = 10251;
+
+-- 10) Categorias e Contagem de Produtos: 
+-- Liste o nome de todas as categorias e a quantidade de produtos em cada uma. 
+-- Inclua categorias que não possuem nenhum produto.
+
+select CategoriesT.CategoryName, count(ProductsT.ProductID)
+from Categories as CategoriesT
+left join Products as ProductsT on CategoriesT.CategoryID = ProductsT.CategoryID
+group by CategoriesT.CategoryName;
+
+-- 11) Pedidos de 'Michael Suyama': 
+-- Mostre todos os OrderIDs e as datas dos pedidos registrados pelo funcionário 'Michael Suyama'.
+
+select *
+from Orders as OrdersT
+where OrdersT.EmployeeID = 
+(
+	select EmployeesT.EmployeeID 
+	from Employees as EmployeesT
+	where EmployeesT.FirstName + ' ' + EmployeesT.LastName = 'Michael Suyama'
+);
+
+-- 12) Combinação Cruzada: 
+-- Gere uma lista com todas as combinações possíveis entre os nomes das categorias 
+-- e os nomes das empresas transportadoras.
+
+select *
+from Categories as CategoriesT
+cross join Shippers as ShippersT;
+
+-- 13) Vendas por Transportadora e Cliente: 
+-- Calcule o valor total de frete (Freight) pago por cada cliente a cada transportadora. 
+-- A consulta deve exibir o nome do cliente, o nome da transportadora e a soma do frete.
+
+select CustomersT.CompanyName, ShippersT.CompanyName, sum(OrdersT.Freight)
+from Orders as OrdersT
+join Customers as CustomersT on OrdersT.CustomerID = CustomersT.CustomerID
+join Shippers as ShippersT on OrdersT.ShipVia = ShippersT.ShipperID
+group by OrdersT.CustomerID, CustomersT.CompanyName, ShippersT.CompanyName;
+
+-- 14) Tempo de Serviço: 
+-- Para cada pedido, mostre o OrderID 
+-- e há quantos anos o funcionário que o registrou trabalhava na empresa naquela data 
+-- (diferença entre OrderDate e HireDate).
+
+select OrdersT.OrderID, datediff(year, cast(EmployeesT.HireDate as date), cast(OrdersT.OrderDate as date))
+from Orders as OrdersT
+join Employees as EmployeesT on OrdersT.EmployeeID = EmployeesT.EmployeeID;
+
+-- 15) Relatório de Vendas Formatado: 
+-- Crie um relatório que mostre uma descrição de cada venda. 
+-- A coluna deve conter um texto formatado como: 
+-- "O cliente [Nome do Cliente] comprou [Quantidade] unidade(s) de 
+-- [Nome do Produto] em [Data do Pedido formatada]."
+
+select concat
+(
+	'O cliente ', CustomersT.CompanyName,
+	' comprou ', OrderDetailsT.Quantity,
+	' unidade(s) de ', ProductsT.ProductName,
+	' em ', format(cast(OrdersT.OrderDate as date), 'dd-MM-yyyy'),
+	'.'
+)
+from Orders as OrdersT
+join [Order Details] as OrderDetailsT on OrdersT.OrderID = OrderDetailsT.OrderID
+join Products as ProductsT on OrderDetailsT.ProductID = ProductsT.ProductID
+join Customers as CustomersT on OrdersT.CustomerID = CustomersT.CustomerID;
+
+-- 16) Cliente com Maior Gasto em Frete: 
+-- Identifique qual cliente gastou mais com frete no total. 
+-- A consulta deve retornar apenas o nome do cliente e o valor total gasto.
+
+select CustomersT.CompanyName, sum(OrdersT.Freight)
+from Customers as CustomersT
+join Orders as OrdersT on CustomersT.CustomerID = OrdersT.CustomerID
+group by CustomersT.CustomerID, CustomersT.CompanyName;
+
+-- 17) Categorias Nunca Vendidas para o México: 
+-- Liste as categorias de produtos que nunca foram vendidas para clientes no México.
+
+select CategoriesT.CategoryName
+from Categories as CategoriesT
+where CategoriesT.CategoryID not in
+(
+	select CategoriesT.CategoryID
+	from Orders as OrdersT
+	join [Order Details] as OrderDetailsT on OrdersT.OrderID = OrderDetailsT.OrderID
+	join Products as ProductsT on OrderDetailsT.ProductID = ProductsT.ProductID
+	join Categories as CategoriesT on ProductsT.CategoryID = CategoriesT.CategoryID
+	where OrdersT.ShipCountry = 'Mexico'
+);
+
+-- 18) Funcionários e Seus Supervisores: 
+-- Crie uma consulta que mostre o nome de cada funcionário 
+-- e o nome do seu supervisor direto. 
+-- Funcionários sem supervisor devem aparecer na lista.
+
+select 
+	EmployeesT.LastName + ' ' + EmployeesT.FirstName,
+	EmpT.LastName + ' ' + EmpT.FirstName
+from Employees as EmployeesT
+left join Employees as EmpT on EmployeesT.ReportsTo = EmpT.EmployeeID;
+
+-- 19) Vendas Totais por Ano: 
+-- Junte os dados de pedidos e detalhes de pedidos para calcular o total de vendas 
+-- (excluindo o frete) para cada ano. 
+-- A consulta deve mostrar o ano e o valor total vendido.
+
+select datepart(year, cast(OrdersT.OrderDate as date)), sum(OrderDetailsT.UnitPrice * OrderDetailsT.Quantity)
+from Orders as OrdersT
+join [Order Details] as OrderDetailsT on OrdersT.OrderID = OrderDetailsT.OrderID
+group by datepart(year, cast(OrdersT.OrderDate as date));
+
+-- 20) Produtos com "Chocolate": 
+-- Encontre todos os produtos que contenham a palavra "chocolate" em seu nome, 
+-- e liste também o nome da categoria e do fornecedor.
+
+select *
+from Products as ProductsT
+join Categories as CategoriesT on ProductsT.CategoryID = CategoriesT.CategoryID
+join Suppliers as SuppliersT on ProductsT.SupplierID = SuppliersT.SupplierID
+where lower(ProductsT.ProductName) like '%chocolate%';
+
+-- 21) Pedidos e Funcionários (Perspectiva dos Pedidos): 
+-- Usando RIGHT JOIN, mostre o nome e sobrenome do funcionário associado a cada pedido. 
+-- Garanta que todos os pedidos apareçam.
+
+select OrdersT.OrderID, EmployeesT.LastName, EmployeesT.FirstName
+from Orders as OrdersT
+right join Employees as EmployeesT on OrdersT.EmployeeID = EmployeesT.EmployeeID
+group by OrdersT.OrderID, EmployeesT.LastName, EmployeesT.FirstName;
+
+-- 22) Diferença de Preço para a Média da Categoria: 
+-- Para cada produto, mostre seu nome, o nome da categoria, 
+-- seu preço e uma coluna indicando a diferença entre o seu preço 
+-- e o preço médio de todos os produtos da sua categoria.
+
+select 
+	ProductsT.ProductName,
+	CategoriesT.CategoryName,
+	ProductsT.UnitPrice,
+	ProductsT.UnitPrice - (select avg(UnitPrice) from Products) as Diferenca
+from Products as ProductsT
+join Categories as CategoriesT on ProductsT.CategoryID = CategoriesT.CategoryID
+group by ProductsT.CategoryID, ProductsT.ProductName, CategoriesT.CategoryName, ProductsT.UnitPrice;
+
+-- 23) Primeiro e Último Pedido por Cliente: 
+-- Para cada cliente, mostre o nome da empresa, 
+-- a data do seu primeiro pedido e a data do seu último pedido.
+
+select 
+	OrdersT.CustomerID,
+	min(cast(OrdersT.OrderDate as date)) as 'Data Primeiro Pedido',
+	max(cast(OrdersT.OrderDate as date)) as 'Data Último Pedido'
+from Orders as OrdersT
+group by OrdersT.CustomerID;
+
+-- 24) Fornecedores com Produtos Acima de $50: 
+-- Liste o nome e o país de todos os fornecedores 
+-- que oferecem pelo menos um produto com preço unitário acima de $50.
+
+select distinct SuppliersT.CompanyName, SuppliersT.Country
+from Orders as OrdersT
+join [Order Details] as OrderDetailsT on OrdersT.OrderID = OrderDetailsT.OrderID
+join Products as ProductsT on OrderDetailsT.ProductID = ProductsT.ProductID
+join Suppliers as SuppliersT on ProductsT.SupplierID = SuppliersT.SupplierID
+where ProductsT.UnitPrice > 50;
+
+-- 25) Ranking de Vendas por Funcionário: 
+-- Crie um ranking dos funcionários baseado no valor total de vendas que eles geraram. 
+-- A consulta deve mostrar a posição no ranking, o nome completo do funcionário e o valor total vendido.
+
+select 
+	EmployeesT.FirstName + ' ' + EmployeesT.LastName,
+	sum(ProductsT.UnitPrice * OrderDetailsT.Quantity)
+from Orders as OrdersT
+join [Order Details] as OrderDetailsT on OrdersT.OrderID = OrderDetailsT.OrderID
+join Products as ProductsT on OrderDetailsT.ProductID = ProductsT.ProductID
+join Employees as EmployeesT on OrdersT.EmployeeID = EmployeesT.EmployeeID
+group by OrdersT.EmployeeID, EmployeesT.FirstName, EmployeesT.LastName;
