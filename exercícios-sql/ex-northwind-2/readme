@@ -1,0 +1,145 @@
+Exercícios Completos de SQL
+
+Sobre o Projeto
+
+Este repositório contém uma coleção de 50 exercícios de SQL, organizados em cinco partes: Funções de Texto e LIKE, Funções de Data e Hora, Funções Matemáticas e de Conversão, Operadores de Conjunto e Filtros, e Exercícios Mistos e Desafios. As consultas utilizam uma variação do banco de dados Northwind (com tabelas suffixadas com "T", como CustomersT, OrdersT, etc.) e abordam desde operações básicas até consultas complexas com joins, subconsultas, agregações e manipulação de dados. O objetivo é demonstrar proficiência em SQL para gerenciamento, análise e relatórios em bancos de dados relacionais, aplicáveis a cenários reais de negócios.
+
+Habilidades Demonstradas
+Consultas Básicas e Avançadas: Uso de SELECT, WHERE, ORDER BY, JOIN, subconsultas e filtros avançados.
+Funções de Texto: UPPER, LOWER, LEFT, CONCAT, REPLACE, TRIM, LEN, LIKE.
+
+Funções de Data e Hora: DATEDIFF, DATEPART, DATEADD, FORMAT, GETDATE.
+
+Funções Matemáticas: ROUND, ABS, POWER, SQRT, FLOOR, CEILING.
+
+Operadores de Conjunto: UNION, UNION ALL, INTERSECT, IN, EXISTS.
+
+Agregações: COUNT, SUM, AVG, MIN, MAX, GROUP BY, HAVING.
+
+Gerenciamento de Dados: INSERT, UPDATE, DELETE, CREATE TABLE, ALTER TABLE, DROP TABLE.
+
+Constraints: PRIMARY KEY, NOT NULL, DEFAULT.
+
+Análise de Dados: Relatórios, rankings e formatação para cenários de negócios.
+
+Estrutura do Banco de Dados
+
+Os exercícios utilizam uma variação do banco de dados Northwind, com tabelas suffixadas com "T". Tabelas principais incluem:
+
+CustomersT: Informações de clientes (CustomerID, CompanyName, ContactName, Address, City, Country, Region, PostalCode).
+
+ProductsT: Detalhes de produtos (ProductID, ProductName, UnitPrice, UnitsInStock, UnitsOnOrder, CategoryID, SupplierID).
+
+OrdersT: Pedidos realizados (OrderID, CustomerID, EmployeeID, OrderDate, ShipCountry, Freight).
+
+Order DetailsT: Itens dos pedidos (OrderID, ProductID, UnitPrice, Quantity, Discount).
+
+EmployeesT: Informações de funcionários (EmployeeID, FirstName, LastName, BirthDate, HireDate, ReportsTo).
+
+CategoriesT: Categorias de produtos (CategoryID, CategoryName).
+
+SuppliersT: Fornecedores (SupplierID, CompanyName, City, Country).
+
+Shippers_Copia: Cópia da tabela de transportadoras (CompanyName, Phone).
+
+Auditoria: Tabela para logs (LogID, NomeTabela, DataModificacao, opcionalmente Usuario).
+
+Relacionamentos:
+CustomersT.CustomerID → OrdersT.CustomerID (1:N)
+
+ProductsT.CategoryID → CategoriesT.CategoryID (N:1)
+
+ProductsT.SupplierID → SuppliersT.SupplierID (N:1)
+
+OrdersT.OrderID → Order DetailsT.OrderID (1:N)
+
+ProductsT.ProductID → Order DetailsT.ProductID (1:N)
+
+EmployeesT.EmployeeID → OrdersT.EmployeeID (1:N)
+
+Para recriar o banco, use o script schema.sql (se disponível) ou configure as tabelas conforme necessário.
+
+Como Executar
+Pré-requisitos:
+Um SGBD compatível (ex.: SQL Server, MySQL, PostgreSQL, SQLite).
+
+Ferramenta para executar scripts SQL (ex.: SQL Server Management Studio, MySQL Workbench, DBeaver)
+Configuração:
+Certifique-se de que o banco de dados Northwind (ou variação com suffixo "T") está configurado.
+
+Execute um script de inicialização (schema.sql) para criar tabelas e inserir dados de exemplo, se necessário.
+
+Exemplo para SQL Server:
+
+sqlcmd -S servidor -U usuario -P senha -d Northwind -i schema.sql
+
+Execução dos Exercícios:
+Cada exercício está em um arquivo SQL (ex.: exercicio1.sql, exercicio2.sql, etc.) ou pode ser executado diretamente no SGBD.
+
+Execute as consultas individualmente:
+
+SOURCE exercicio1.sql;
+
+Ou copie e cole no seu cliente SQL.
+
+Lista de Exercícios
+
+Parte 1: Funções de Texto e LIKE
+exercicio1.sql: Formata nomes completos de funcionários em letras maiúsculas.
+exercicio2.sql: Extrai as 3 primeiras letras dos nomes de produtos.
+exercicio3.sql: Lista clientes com nome começando com 'A' e terminando com 'o'.
+exercicio4.sql: Lista produtos com nomes maiores que 20 caracteres.
+exercicio5.sql: Substitui 'Lager' por 'Cerveja' em nomes de produtos da categoria 1.
+exercicio6.sql: Concatena ID e nome de produtos.
+exercicio7.sql: Lista clientes de países começando com 'U', exceto 'USA'.
+exercicio8.sql: Substitui regiões nulas por 'N/A' para clientes.
+exercicio9.sql: Remove espaços dos telefones de clientes.
+exercicio10.sql: Lista produtos com apóstrofo no nome.
+
+Parte 2: Funções de Data e Hora
+exercicio11.sql: Calcula a idade dos funcionários com base na data de nascimento.
+exercicio12.sql: Calcula o tempo de serviço dos funcionários.
+exercicio13.sql: Conta pedidos por ano e trimestre.
+exercicio14.sql: Formata datas de pedidos no formato 'dd/MM/yyyy'.
+exercicio15.sql: Lista pedidos da última semana.
+exercicio16.sql: Mostra o dia da semana dos pedidos.
+exercicio17.sql: Adiciona 30 dias à data de pedidos para acompanhamento.
+exercicio18.sql: Lista pedidos feitos no mês de aniversário dos funcionários.
+exercicio19.sql: Lista produtos de pedidos de julho de 1996.
+exercicio20.sql: Lista pedidos realizados antes do meio-dia.
+
+Parte 3: Funções Matemáticas e de Conversão
+exercicio21.sql: Arredonda preços unitários de produtos.
+exercicio22.sql: Calcula a diferença absoluta entre preço e nível de reabastecimento.
+exercicio23.sql: Aplica potenciação entre preço e quantidade em detalhes de pedidos.
+exercicio24.sql: Calcula a raiz quadrada do ID dos produtos.
+exercicio25.sql: Seleciona o maior valor entre estoque e unidades pedidas.
+exercicio26.sql: Converte e concatena ID e nome de produtos.
+exercicio27.sql: Calcula piso e teto de preços unitários.
+exercicio28.sql: Classifica o status do estoque (positivo, zero ou negativo).
+
+Parte 4: Operadores de Conjunto e Filtros
+exercicio29.sql: Une cidades de clientes e fornecedores (sem duplicatas).
+exercicio30.sql: Une cidades de clientes e fornecedores (com duplicatas).
+exercicio31.sql: Lista países comuns entre clientes e fornecedores
+exercicio32.sql: Lista produtos das categorias 'Confections' e 'Dairy Products'.
+exercicio33.sql: Lista clientes sem pedidos.
+exercicio34.sql: Lista produtos com preços entre 20 e 50.
+exercicio35.sql: Lista pedidos de janeiro a junho de 1998.
+exercicio36.sql: Lista clientes sem região definida.
+exercicio37.sql: Lista funcionários com chefe definido.
+exercicio38.sql: Lista fornecedores com produtos associados.
+
+Parte 5: Exercícios Mistos e Desafios
+exercicio39.sql: Formata endereços de clientes na Alemanha.
+exercicio40.sql: Calcula o total de vendas mensal por ano e mês.
+exercicio41.sql: Lista produtos que nunca foram vendidos.
+exercicio42.sql: Calcula o valor total de descontos por categoria.
+exercicio43.sql: Formata preços de produtos em reais (R$).
+exercicio44.sql: Lista clientes e fornecedores na mesma cidade e país.
+exercicio45.sql: Calcula custo médio de frete e total de pedidos por país.
+exercicio46.sql: Identifica o funcionário com mais pedidos em julho de 1997.
+exercicio47.sql: Mostra o primeiro e último pedido de cada cliente.
+exercicio48.sql: Lista produtos com "chocolate" no nome.
+exercicio49.sql: Calcula a diferença de preço em relação à média.
+exercicio50.sql: Gera um ranking dos 10 produtos mais vendidos.
