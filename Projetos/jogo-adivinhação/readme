@@ -1,0 +1,23 @@
+# Jogo de Adivinhação em C
+
+## Sobre o Projeto
+Este é um jogo de adivinhação desenvolvido em C para praticar conceitos fundamentais de programação, como geração de números aleatórios, controle de fluxo e interação com o usuário. O objetivo é adivinhar um número secreto entre 1 e 100, com dicas fornecidas a cada tentativa.
+
+## Habilidades Demonstradas
+- Programação em C
+- Uso de bibliotecas padrão (`stdio.h`, `stdlib.h`, `time.h`)
+- Geração de números aleatórios
+- Controle de fluxo com laços e condicionais
+- Interação com o usuário
+
+## Funcionalidades
+- Gera um número aleatório entre 1 e 100
+- Solicita tentativas do usuário
+- Fornece dicas (maior/menor) para orientar o jogador
+- Conta o número de tentativas até o acerto
+
+## Como Compilar e Executar
+1. **Pré-requisitos**: Compilador C (ex.: `gcc`)
+2. **Compilar**:
+   ```bash
+   gcc jogo.c -o jogo
