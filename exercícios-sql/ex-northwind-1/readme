@@ -1,0 +1,105 @@
+Exercícios de SQL
+
+Sobre o Projeto
+
+Este repositório contém uma coleção de 20 exercícios de SQL desenvolvidos para praticar e demonstrar habilidades em bancos de dados relacionais. As consultas utilizam o banco de dados Northwind (ou uma variação dele), abordando desde operações básicas (seleção, inserção, atualização) até consultas mais avançadas com joins, subconsultas, agregações e gerenciamento de tabelas. O objetivo é reforçar conceitos fundamentais de SQL e modelagem de dados, aplicáveis em cenários reais de gerenciamento de dados.
+
+Habilidades Demonstradas
+Consultas básicas (SELECT, WHERE, ORDER BY)
+
+Funções de agregação (COUNT, SUM, AVG)
+
+Subconsultas e consultas aninhadas
+
+Junções implícitas e filtros com IN
+
+Agrupamento de dados (GROUP BY, HAVING)
+
+Gerenciamento de dados (INSERT, UPDATE, DELETE)
+
+Criação e modificação de tabelas (CREATE TABLE, ALTER TABLE, DROP TABLE)
+
+Uso de constraints (PRIMARY KEY, NOT NULL, DEFAULT)
+
+Otimização de consultas e manipulação de dados relacionais
+
+Estrutura do Banco de Dados
+
+Os exercícios utilizam o banco de dados Northwind (ou similar), com as seguintes tabelas principais:
+
+Customers: Informações de clientes (CustomerID, ContactName, Phone, City, Country).
+
+Products: Detalhes de produtos (ProductID, ProductName, UnitPrice, UnitsInStock, CategoryID, SupplierID).
+
+Orders: Pedidos realizados (OrderID, OrderDate, ShipCity).
+
+Order Details: Itens dos pedidos (OrderID, ProductID, UnitPrice, Quantity).
+
+Employees: Informações de funcionários (EmployeeID, HireDate, Country).
+
+Categories: Categorias de produtos (CategoryID, CategoryName).
+
+Suppliers: Fornecedores (SupplierID).
+
+Shippers_Copia: Cópia da tabela de transportadoras (CompanyName, Phone).
+
+Auditoria: Tabela criada para logs (LogID, NomeTabela, DataModificacao, opcionalmente Usuario).
+
+Relacionamentos:
+
+Customers.CustomerID → Orders.CustomerID (1:N)
+
+Products.CategoryID → Categories.CategoryID (N:1)
+
+Products.SupplierID → Suppliers.SupplierID (N:1)
+
+Orders.OrderID → Order Details.OrderID (1:N)
+
+Products.ProductID → Order Details.ProductID (1:N)
+
+Para recriar o banco, use o script schema.sql (se disponível) ou configure as tabelas conforme necessário.
+
+Como Executar
+Pré-requisitos:
+Um SGBD compatível (ex.: SQL Server, MySQL, PostgreSQL, SQLite).
+
+Ferramenta para executar scripts SQL (ex.: SQL Server Management Studio, MySQL Workbench, DBeaver).
+
+Configuração:
+Certifique-se de que o banco de dados Northwind (ou similar) está configurado.
+Se necessário, execute um script de inicialização (schema.sql) para criar tabelas e inserir dados de exemplo.
+
+Exemplo para SQL Server:
+
+sqlcmd -S servidor -U usuario -P senha -d Northwind -i schema.sql
+
+Execução dos Exercícios:
+Cada exercício está em um arquivo SQL (ex.: exercicio1.sql) ou pode ser executado diretamente no SGBD.
+
+Execute as consultas individualmente:
+
+SOURCE exercicio1.sql;
+
+Ou copie e cole no seu cliente SQL.
+
+Lista de Exercícios
+exercicio1.sql: Lista nome e telefone de clientes de Londres.
+exercicio2.sql: Mostra produtos com estoque zerado, ordenados por nome.
+exercicio3.sql: Lista pedidos de maio de 1997, ordenados por data (descendente).
+exercicio4.sql: Identifica os 5 produtos mais caros.
+exercicio5.sql: Lista funcionários contratados antes de 1993 nos EUA.
+exercicio6.sql: Conta produtos do fornecedor com ID 1.
+exercicio7.sql: Calcula o preço médio de todos os produtos.
+exercicio8.sql: Conta clientes por país.
+exercicio9.sql: Calcula o valor total em estoque por categoria.
+exercicio10.sql: Lista países com mais de 7 clientes.
+exercicio11.sql: Calcula o valor total vendido por produto (acima de $50.000).
+exercicio2.sql: Lista cidades únicas com pedidos enviados.
+exercicio13.sql: Lista produtos da categoria 'Beverages' usando subconsulta.
+exercicio14.sql: Lista produtos com preço acima da média.
+exercicio15.sql: Insere a transportadora "Loggi" na tabela Shippers_Copia.
+exercicio16.sql: Atualiza o telefone da "Loggi".
+exercicio17.sql: Exclui a transportadora "Speedy Express".
+exercicio18.sql: Cria a tabela Auditoria.
+exercicio19.sql: Recria a tabela Auditoria com constraints.
+exercicio20.sql: Adiciona e remove a coluna Usuario na tabela Auditoria.
