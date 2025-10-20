@@ -1,0 +1,42 @@
+Jogo de Adivinhação de Paridade em C
+
+Sobre o Projeto
+
+Este é um programa em C que implementa um jogo de adivinhação onde o jogador tenta prever se um número aleatório entre 1 e 1000 é par ou ímpar. O programa gera um número aleatório, solicita que o usuário escolha entre "Par" ou "Ímpar" e informa se a escolha está correta, exibindo o número gerado. O projeto foi desenvolvido para praticar conceitos de programação em C, como geração de números aleatórios, validação de entrada e internacionalização com suporte ao idioma português.
+
+Habilidades Demonstradas
+
+Programação em C
+
+Uso de bibliotecas padrão (stdio.h, stdlib.h, time.h, locale.h)
+
+Geração de números aleatórios com rand e srand
+
+Controle de fluxo com laços (do-while) e condicionais (if-else)
+  
+Validação de entrada do usuário
+                                                       
+Configuração de localização para suporte a caracteres em português (setlocale)
+
+Funcionalidades
+Gera um número aleatório entre 1 e 1000.
+
+Solicita que o usuário escolha se o número é par (P) ou ímpar (I).
+                                                       
+Valida a entrada, aceitando apenas P, p, I ou i.
+
+Informa se o usuário acertou ou errou, exibindo se o número é par ou ímpar e o valor do número.
+
+Suporta acentuação em português com setlocale.
+
+Como Compilar e Executar
+
+Pré-requisitos: Um compilador C (ex.: gcc) instalado.
+
+Compilação: Salve o código em um arquivo (ex.: jogo_paridade.c) e compile com:
+
+gcc jogo_paridade.c -o jogo_paridade
+
+Execução: Execute o programa com:
+
+./jogo_paridade
