@@ -1,0 +1,56 @@
+Projeto Remédio Em Casa 2.0
+
+Sobre o Projeto
+
+O Projeto Remédio Em Casa 2.0 é um programa em C que simula um sistema de agendamento para entrega de medicamentos e consultas médicas. O usuário pode fornecer informações pessoais, escolher medicamentos, agendar o dia e horário de entrega, e, opcionalmente, marcar uma consulta com médicos de diferentes especialidades em UBS (Unidades Básicas de Saúde). O projeto foi desenvolvido para praticar conceitos avançados de programação em C, como modularização com funções, validação de entradas, manipulação de strings e arrays, e suporte à internacionalização em português.
+
+Habilidades Demonstradas
+Programação em C
+Uso de bibliotecas padrão (stdio.h, stdlib.h, locale.h)
+
+Modularização com funções
+
+Validação de entrada do usuário (números, strings e caracteres)
+
+Manipulação de arrays para rastrear escolhas
+
+Configuração de localização para suporte a caracteres em português (setlocale)
+
+Estruturas de controle (do-while, switch, if-else)
+
+Funcionalidades
+Coleta de Informações do Usuário: Solicita nome, CPF, idade e endereço com validação de idade.
+
+Agendamento de Entrega:
+                        
+Escolha do dia da entrega (segunda a sexta-feira).
+
+Escolha do horário de entrega (10h, 12h, 14h, 16h).
+
+Seleção de Medicamentos:
+
+Menu com quatro opções de medicamentos (Dipirona, Paracetamol, Amoxicilina, Omeprazol).
+
+Permite selecionar múltiplos medicamentos com quantidades e evita seleções duplicadas.
+                        
+Agendamento de Consultas:
+
+Menu de especialidades médicas (Pediatra, Clínico Geral, Ginecologista, Ortopedista).
+
+Submenu com médicos disponíveis em diferentes UBS.
+
+Validação de Entrada: Garante escolhas válidas em todos os menus e respostas do usuário.
+
+Suporte a Português: Usa setlocale para exibir acentos corretamente.
+
+Como Compilar e Executar
+                        
+Pré-requisitos: Um compilador C (ex.: gcc) instalado.
+
+Compilação: Salve o código em um arquivo (ex.: remedio_em_casa.c) e compile com:
+
+gcc remedio_em_casa.c -o remedio_em_casa
+
+Execução: Execute o programa com:
+
+./remedio_em_casa
