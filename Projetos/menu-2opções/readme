@@ -1,0 +1,44 @@
+Programa de Multiplicação e Verificação de Paridade em C
+
+Sobre o Projeto
+
+Este é um programa em C que oferece duas funcionalidades: realizar a multiplicação entre dois números inteiros ou verificar se um número é par ou ímpar. O usuário escolhe uma opção por meio de um menu interativo e pode repetir o processo quantas vezes desejar. O projeto foi desenvolvido para praticar conceitos de programação em C, como entrada/saída, controle de fluxo, validação de entrada e internacionalização com suporte ao idioma português.
+
+Habilidades Demonstradas
+
+Programação em C
+
+Uso de bibliotecas padrão (stdio.h, locale.h)
+
+Controle de fluxo com laços (do-while) e condicionais (if-else)
+  
+Validação de entrada do usuário
+
+Configuração de localização para suporte a caracteres em português (setlocale)
+
+Funcionalidades
+
+Menu Interativo: Permite escolher entre:
+                                                       
+Multiplicação de dois números inteiros.
+
+Verificação se um número é par ou ímpar.
+
+Validação de Entrada: Garante que as opções do menu (1 ou 2) e a escolha de continuar (S ou N) sejam válidas.
+
+Suporte a Português: Usa setlocale para exibir mensagens com acentuação correta.
+
+
+Repetição do Programa: Permite ao usuário realizar múltiplas operações até optar por sair.
+
+Como Compilar e Executar
+
+Pré-requisitos: Um compilador C (ex.: gcc) instalado.
+
+Compilação: Salve o código em um arquivo (ex.: menu.c) e compile com:
+
+gcc menu.c -o menu
+
+Execução: Execute o programa com:
+
+./menu
