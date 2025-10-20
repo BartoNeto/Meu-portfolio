@@ -1,0 +1,311 @@
+-- ================================
+-- PARTE 1: Funções de Texto e LIKE
+-- ================================
+
+--1. Formatação de Nomes
+select upper(LastName + ', ' + FirstName) as NomeCompleto
+from EmployeesT;
+
+--2. Extração de Iniciais
+select left(ProductName, 3) as Produto
+from ProductsT;
+
+--3. Busca por Padrão
+select *
+from CustomersT
+where ContactName like 'A%' and ContactName like '%o';
+
+--4. Comprimento do Nome
+select *
+from ProductsT
+where len(ProductName) > 20
+order by ProductName;
+
+--5. Substituição de Texto
+select replace(ProductName, 'Lager', 'Cerveja') as Produto
+from ProductsT
+where CategoryID = 1;
+
+--6. Concatenação com Conversão
+select concat('ID: ', ProductID, ' - Nome: ', ProductName) as [ID - Nome]
+from ProductsT;
+
+--7. Busca por Múltiplos Padrões
+select *
+from CustomersT
+where Country like 'U%' and Country <> 'USA';
+
+--8. Verificação de Nulos
+select CompanyName, isnull(Region, 'N/A') as Regiao
+from CustomersT;
+
+--9. Remoção de Espaços
+select ContactName, trim(Phone) as Contato
+from CustomersT;
+
+--10. Busca por Apóstrofo
+select *
+from ProductsT
+where ProductName like '%''%';
+
+
+-- ================================
+-- PARTE 2: Funções de Data e Hora
+-- ================================
+
+--11. Idade dos Funcionários
+select FirstName, LastName,
+       datediff(year, BirthDate, getdate()) as Idade
+from EmployeesT;
+
+--12. Tempo de Serviço
+select FirstName, LastName,
+       datediff(year, HireDate, getdate()) as TempoEmpregado
+from EmployeesT;
+
+--13. Pedidos por Trimestre
+select year(OrderDate) as Ano,
+       datepart(quarter, OrderDate) as Trimestre,
+       count(*) as TotalPedidos
+from OrdersT
+group by year(OrderDate), datepart(quarter, OrderDate)
+order by Ano, Trimestre;
+
+--14. Formatação de Data
+select top 10 OrderID,
+       format(OrderDate, 'dd/MM/yyyy') as DataPedido
+from OrdersT
+order by OrderDate;
+
+--15. Pedidos da Última Semana
+select *
+from OrdersT
+where OrderDate >= (
+    select dateadd(day, -7, max(OrderDate))
+    from OrdersT
+)
+order by OrderDate desc;
+
+--16. Dia da Semana
+select OrderID, format(OrderDate, 'dddd') as DiaSemana
+from OrdersT;
+
+--17. Adicionando Tempo
+select OrderID,
+       OrderDate as DataPedido,
+       dateadd(day, 30, OrderDate) as DataPrimeiroAcompanhamento
+from OrdersT;
+
+--18. Pedidos de Aniversário
+select o.*
+from OrdersT o
+join EmployeesT e on o.EmployeeID = e.EmployeeID
+where month(o.OrderDate) = month(e.BirthDate);
+
+--19. Filtro por Ano e Mês
+select distinct p.*
+from [Order DetailsT] od
+join OrdersT o on od.OrderID = o.OrderID
+join ProductsT p on od.ProductID = p.ProductID
+where year(o.OrderDate) = 1996 and month(o.OrderDate) = 7;
+
+--20. Hora do Pedido
+select *
+from OrdersT
+where datepart(hour, OrderDate) < 12;
+
+
+-- ==============================================
+-- PARTE 3: Funções Matemáticas e de Conversão
+-- ==============================================
+
+--21. Arredondamento de Preços
+select ProductName, round(UnitPrice, 0) as PrecoUnitario
+from ProductsT;
+
+--22. Valor Absoluto
+select ProductName, UnitPrice, ReorderLevel,
+       abs(UnitPrice - ReorderLevel) as DiferencaAbsoluta
+from ProductsT;
+
+--23. Potenciação
+select ProductID, UnitPrice, Quantity,
+       power(UnitPrice, Quantity) as Potenciacao
+from [Order DetailsT];
+
+--24. Raiz Quadrada
+select top 10 ProductID, ProductName, sqrt(ProductID) as RaizQuadrada
+from ProductsT;
+
+--25. Valor Máximo entre Colunas
+select ProductID, ProductName,
+       case when UnitsInStock > UnitsOnOrder then UnitsInStock else UnitsOnOrder end as Maior
+from ProductsT;
+
+--26. Conversão de Tipos
+select ProductID, CategoryID, ProductName,
+       ProductID + CategoryID as Soma,
+       cast(ProductID as varchar) + ' - ' + ProductName as Concatenado
+from ProductsT;
+
+--27. Piso e Teto
+select top 10 ProductName, UnitPrice,
+       floor(UnitPrice) as Piso,
+       ceiling(UnitPrice) as Teto
+from ProductsT
+order by UnitPrice desc;
+
+--28. Sinal do Estoque
+select ProductID, ProductName, UnitsInStock,
+       case 
+         when UnitsInStock > 0 then 1
+         when UnitsInStock = 0 then 0
+         else -1
+       end as StatusEstoque
+from ProductsT;
+
+
+-- ============================================
+-- PARTE 4: Operadores de Conjunto e Filtros
+-- ============================================
+
+--29. União de Cidades
+select City + ' - ' + Country as CidadePais
+from CustomersT
+union
+select City + ' - ' + Country
+from SuppliersT;
+
+--30. União com Duplicatas
+select City + ' - ' + Country as CidadePais
+from CustomersT
+union all
+select City + ' - ' + Country
+from SuppliersT;
+
+--31. Interseção de Países
+select Country
+from CustomersT
+intersect
+select Country
+from SuppliersT;
+
+--32. Filtro com Lista
+select p.ProductName, c.CategoryName
+from ProductsT p
+join CategoriesT c on p.CategoryID = c.CategoryID
+where c.CategoryName in ('Confections', 'Dairy Products');
+
+--33. Clientes sem Pedidos
+select c.*
+from CustomersT c
+left join OrdersT o on c.CustomerID = o.CustomerID
+where o.OrderID is null;
+
+--34. Intervalo de Preços
+select *
+from ProductsT
+where UnitPrice between 20 and 50;
+
+--35. Intervalo de Datas
+select *
+from OrdersT
+where year(OrderDate) = 1998 and month(OrderDate) <= 6;
+
+--36. Verificação de Nulos
+select *
+from CustomersT
+where Region is null;
+
+--37. Verificação de Não Nulos
+select *
+from EmployeesT
+where ReportsTo is not null;
+
+--38. Verificação de Existência
+select *
+from SuppliersT s
+where exists (select 1 from ProductsT p where p.SupplierID = s.SupplierID);
+
+
+-- =======================================
+-- PARTE 5: Exercícios Mistos e Desafios
+-- =======================================
+
+--39. Formato de Endereço
+select concat('Endereço: ', Address, ', Cidade: ', City, ', CEP: ', PostalCode) as Endereco
+from CustomersT
+where Country = 'Germany';
+
+--40. Relatório de Vendas Mensal
+select year(o.OrderDate) as Ano,
+       month(o.OrderDate) as Mes,
+       sum(od.UnitPrice * od.Quantity * (1 - od.Discount)) as TotalVendido
+from [Order DetailsT] od
+join OrdersT o on od.OrderID = o.OrderID
+group by year(o.OrderDate), month(o.OrderDate)
+order by Ano, Mes;
+
+--41. Produtos sem Venda
+select p.*
+from ProductsT p
+left join [Order DetailsT] od on p.ProductID = od.ProductID
+where od.ProductID is null;
+
+--42. Análise de Descontos
+select c.CategoryName,
+       sum(od.UnitPrice * od.Quantity * od.Discount) as ValorDesconto
+from [Order DetailsT] od
+join ProductsT p on od.ProductID = p.ProductID
+join CategoriesT c on p.CategoryID = c.CategoryID
+group by c.CategoryName;
+
+--43. Conversão para Moeda
+select ProductName, format(UnitPrice, 'C', 'pt-BR') as Preco
+from ProductsT;
+
+--44. Clientes e Fornecedores na Mesma Cidade
+select c.CompanyName as Cliente, s.CompanyName as Fornecedor, c.City, c.Country
+from CustomersT c
+join SuppliersT s on c.City = s.City and c.Country = s.Country;
+
+--45. Relatório de Frete
+select ShipCountry,
+       avg(Freight) as CustoMedio,
+       count(OrderID) as TotalPedidos
+from OrdersT
+group by ShipCountry
+having count(OrderID) > 10;
+
+--46. Funcionário do Mês
+select top 1 e.FirstName, e.LastName, count(o.OrderID) as PedidosRegistrados
+from OrdersT o
+join EmployeesT e on o.EmployeeID = e.EmployeeID
+where year(o.OrderDate) = 1997 and month(o.OrderDate) = 7
+group by e.FirstName, e.LastName
+order by PedidosRegistrados desc;
+
+--47. Primeiro e Último Pedido
+select CustomerID,
+       min(OrderDate) as PrimeiroPedido,
+       max(OrderDate) as UltimoPedido
+from OrdersT
+group by CustomerID;
+
+--48. Produtos com "Chocolate"
+select *
+from ProductsT
+where lower(ProductName) like '%chocolate%';
+
+--49. Diferença de Preço para a Média
+select ProductName, UnitPrice,
+       UnitPrice - (select avg(UnitPrice) from ProductsT) as Diferenca
+from ProductsT;
+
+--50. Ranking de Vendas por Produto
+select top 10 p.ProductName,
+       sum(od.UnitPrice * od.Quantity * (1 - od.Discount)) as TotalVendido
+from [Order DetailsT] od
+join ProductsT p on od.ProductID = p.ProductID
+group by p.ProductName
+order by TotalVendido desc;
