@@ -1,0 +1,51 @@
+Exercícios de Programação em C - Foco em For
+
+Sobre o Projeto
+
+Este repositório contém uma coleção de exercícios em linguagem C, com ênfase na estrutura de repetição for. Os exercícios abordam iterações controladas por contadores, cálculos matemáticos (soma, média, contagem), manipulação de vetores e processamento de sequências. Inspirados em aplicações práticas, como cálculos estatísticos e iteração em listas, os programas demonstram o uso de for para resolver problemas de forma eficiente. O objetivo é reforçar habilidades em C, com foco em lógica de programação, controle de fluxo e manipulação de dados.
+
+Habilidades Demonstradas
+Uso de for para iterações controladas por contadores.
+
+Manipulação de entrada/saída com printf e scanf.
+
+Cálculos matemáticos: soma, média, contagem de elementos.
+
+Processamento de vetores (arrays) com for.
+
+Condicionais (if-else) dentro de loops.
+
+Suporte a acentuação em português com setlocale (locale.h).
+
+Validação básica de entrada e organização de código.
+
+Estrutura dos Exercícios
+
+Os exercícios são organizados na pasta for, com arquivos .c contendo programas completos e comentários explicativos. Cada programa utiliza for para iterações, como loops sobre vetores, contagem de elementos, ou cálculos repetitivos. Todos incluem setlocale para suportar acentuação em português.
+
+Requisitos do Sistema
+
+Compilador: GCC (Linux/Mac), MinGW (Windows), ou plataformas online como Replit.
+
+Bibliotecas: stdio.h (entrada/saída), locale.h (acentuação).
+
+Como Compilar e Executar
+
+Pré-requisitos:
+
+Instale um compilador C (ex.: gcc via sudo apt install gcc no Linux, ou MinGW no Windows).
+
+Ou use Replit para rodar os programas online.
+
+Compilação:
+Salve cada exercício em um arquivo .c (ex.: exercicio1.c).
+
+Compile com o comando:
+
+gcc exercicio1.c -o exercicio1
+
+Execução:
+
+Execute o programa compilado:
+
+./exercicio1
