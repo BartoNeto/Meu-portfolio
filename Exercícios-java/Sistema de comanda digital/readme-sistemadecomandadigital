@@ -1,0 +1,65 @@
+Sistema de Comanda Digital
+
+Sobre o Projeto
+
+Este projeto, desenvolvido em Java, implementa um sistema de comanda digital para gerenciar pedidos em um ambiente de restaurante ou lanchonete. O sistema permite registrar pedidos, calcular valores totais, gerenciar itens do cardápio, e possivelmente outras funcionalidades, como controle de estoque ou histórico de vendas. O objetivo é demonstrar habilidades em programação orientada a objetos (POO), manipulação de entrada/saída, e organização de código em Java, aplicadas a um cenário prático de automação comercial.
+
+Habilidades Demonstradas
+Programação orientada a objetos (POO) com classes, objetos, e métodos.
+
+Manipulação de entrada/saída via Scanner ou interfaces gráficas (ex.: Swing, JavaFX, se aplicável).
+
+Estruturas de dados (ex.: arrays, ArrayList, ou HashMap para gerenciar pedidos ou itens).
+
+Controle de fluxo com condicionais (if-else, switch) e loops (for, while).
+
+Validação de entrada para garantir dados consistentes.
+
+Organização de código com modularização e boas práticas.
+
+(Opcional) Persistência de dados em arquivos ou banco de dados.
+
+Estrutura do Projeto
+
+Os arquivos do projeto estão organizados na pasta Exercícios-java/Sistema de comanda digital. A estrutura inclui:
+
+Arquivos .java com as classes principais (ex.: Comanda, Item, Cardapio).
+
+(Opcional) Arquivos de configuração ou dados (ex.: .txt, .csv para cardápio).
+
+Documentação (este README).
+
+Requisitos do Sistema
+
+JDK: Java Development Kit (versão 8 ou superior).
+
+Compilador: javac (incluso no JDK).
+
+Ambiente de Execução: Java Runtime Environment (JRE) ou plataformas online como Replit.
+
+Bibliotecas: java.util.Scanner (entrada/saída), outras conforme necessário (ex.: java.io para arquivos).
+
+Como Compilar e Executar
+Pré-requisitos:
+Instale o JDK (ex.: sudo apt install openjdk-17-jdk no Linux, ou baixe em oracle.com).
+
+Ou use Replit para rodar online.
+
+Compilação:
+Salve os arquivos .java (ex.: Main.java).
+
+Compile com o comando:
+
+javac Main.java
+
+Se houver múltiplas classes, compile todas:
+
+javac *.java
+
+Execução:
+
+Execute o programa compilado:
+
+java Main
+
+No Replit, cole o código e clique em "Run".
