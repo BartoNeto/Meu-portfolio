@@ -1,0 +1,50 @@
+Exercícios de Programação em C - Foco em While
+
+Sobre o Projeto
+
+Este repositório contém uma coleção de exercícios em linguagem C, com ênfase na estrutura de repetição while. Os exercícios abordam repetições condicionais, validação de entrada, cálculos matemáticos (soma, contagem, verificação de condições), e controle de fluxos interativos. Inspirados em aplicações práticas, como validação de dados e menus simples, os programas demonstram o uso de while para resolver problemas de forma eficiente. O objetivo é reforçar habilidades em C, com foco em lógica de programação, controle de fluxo e interação com o usuário.
+
+Habilidades Demonstradas
+Uso de while para repetições baseadas em condições dinâmicas.
+
+Manipulação de entrada/saída com printf e scanf.
+
+Cálculos matemáticos: soma, contagem, verificação de condições.
+
+Validação de entrada para garantir dados válidos.
+
+Suporte a acentuação em português com setlocale (locale.h).
+
+Uso de condicionais (if-else) dentro de loops.
+
+Organização de código com comentários claros.
+
+Estrutura dos Exercícios
+
+Os exercícios são organizados na pasta while, com arquivos .c contendo programas completos e comentários explicativos. Cada programa utiliza while para controlar repetições, como validação de entrada, contagem de iterações, ou processamento de dados. Todos incluem setlocale para suportar acentuação em português.
+
+Requisitos do Sistema
+
+Compilador: GCC (Linux/Mac), MinGW (Windows), ou plataformas online como Replit.
+
+Bibliotecas: stdio.h (entrada/saída), locale.h (acentuação).
+
+Como Compilar e Executar
+
+Pré-requisitos:
+Instale um compilador C (ex.: gcc via sudo apt install gcc no Linux, ou MinGW no Windows).
+
+Ou use Replit para rodar os programas online.
+
+Compilação:
+Salve cada exercício em um arquivo .c (ex.: exercicio1.c).
+
+Compile com o comando:
+
+gcc exercicio1.c -o exercicio1
+
+Execução:
+
+Execute o programa compilado:
+
+./exercicio1
