@@ -1,0 +1,50 @@
+Exercícios de Programação em C - Foco em Do-While
+
+Sobre o Projeto
+
+Esta pasta contém uma coleção de seis exercícios em linguagem C, com ênfase na estrutura de repetição do-while. Os exercícios abordam validação de entrada, cálculos matemáticos (soma, média, multiplicação), verificação de paridade e criação de menus interativos. Inspirados em aplicações práticas, como validação de números e sistemas de menu, os programas demonstram o uso de do-while para controle de fluxo e interação com o usuário. O objetivo é reforçar habilidades fundamentais em C, com foco em lógica de programação e tratamento de entrada/saída.
+
+Habilidades Demonstradas
+Uso de do-while para repetição controlada e validação de entrada.
+
+Manipulação de entrada/saída com printf e scanf.
+
+Cálculos matemáticos: soma, média, multiplicação, verificação de paridade.
+
+Uso de condicionais (if-else, switch) dentro de loops.
+
+Suporte a acentuação em português com setlocale (locale.h).
+
+Manipulação de variáveis (int, float) e conversão de tipos (float para médias).
+
+Estruturação de menus interativos.
+
+Estrutura dos Exercícios
+                     
+Os exercícios são organizados em arquivos individuais (ex.: exercicio1.c, exercicio2.c), cada um contendo um programa completo em C com comentários explicando a lógica. Todos utilizam do-while para garantir entradas válidas ou controlar repetições, e incluem setlocale para suportar acentuação em português.
+
+Requisitos do Sistema
+
+Compilador: GCC (Linux/Mac), MinGW (Windows), ou plataformas online como Replit.
+
+Bibliotecas: stdio.h (entrada/saída), locale.h (acentuação).
+
+Como Compilar e Executar
+Pré-requisitos:
+Instale um compilador C (ex.: gcc via sudo apt install gcc no Linux, ou MinGW no Windows).
+
+Ou use Replit para rodar os programas online sem instalação.
+
+Compilação:
+
+Salve cada exercício em um arquivo .c (ex.: exercicio1.c).
+
+Compile com o comando:
+
+gcc exercicio1.c -o exercicio1
+
+Execução:
+
+Execute o programa compilado:
+
+./exercicio1
