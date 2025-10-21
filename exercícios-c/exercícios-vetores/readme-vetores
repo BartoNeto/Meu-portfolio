@@ -1,0 +1,49 @@
+Exercícios de Programação em C - Foco em Vetores
+
+Sobre o Projeto
+
+Esta pasta contém uma coleção de exercícios em linguagem C, com ênfase no uso de vetores (arrays). Os exercícios abordam a manipulação de vetores para armazenar, processar e analisar dados, incluindo cálculos de soma, média, busca de elementos (máximo/mínimo), e ordenação. Inspirados em aplicações práticas, como gerenciamento de listas e cálculos estatísticos, os programas demonstram o uso de vetores em conjunto com estruturas de controle (for, while) para resolver problemas reais. O objetivo é reforçar habilidades em C, com foco em organização de dados, lógica de programação e manipulação de arrays.
+
+Habilidades Demonstradas
+Declaração e inicialização de vetores (int, float, char).
+
+Iteração sobre vetores com for ou while.
+
+Cálculos com vetores: soma, média, máximo/mínimo.
+
+Manipulação de entrada/saída com printf e scanf.
+
+Validação de entrada para evitar erros (ex.: índices fora dos limites).
+
+Suporte a acentuação em português com setlocale (locale.h).
+
+Uso de condicionais (if-else) e loops para processar vetores.
+
+Organização de código com comentários claros.
+
+Estrutura dos Exercícios
+
+Os exercícios são organizados na pasta vetores, com arquivos .c contendo programas completos e comentários explicativos. Cada programa utiliza vetores para armazenar e processar dados, com ênfase em iterações e cálculos. Todos incluem setlocale para suportar acentuação em português.
+
+Requisitos do Sistema
+Compilador: GCC (Linux/Mac), MinGW (Windows), ou plataformas online como Replit.
+                     
+Bibliotecas: stdio.h (entrada/saída), locale.h (acentuação).
+
+Como Compilar e Executar
+
+Pré-requisitos:
+Instale um compilador C (ex.: gcc via sudo apt install gcc no Linux, ou MinGW no Windows).
+                     
+Ou use Replit para rodar os programas online.
+
+Compilação:
+Salve cada exercício em um arquivo .c (ex.: exercicio1.c).
+Compile com o comando:
+
+gcc exercicio1.c -o exercicio1
+
+Execução:
+Execute o programa compilado:
+
+./exercicio1
